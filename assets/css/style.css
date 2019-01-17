@@ -1,7 +1,13 @@
 main {
     background-color: whitesmoke;
+    padding: 20px;
 }
 
-#input {
-    display: table;
+.btn {
+    margin: 5px;
+    text-emphasis: bold;
+}
+
+.row {
+    padding-left: 20px;
 }
