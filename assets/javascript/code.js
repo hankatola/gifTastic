@@ -21,17 +21,23 @@ $(document).ready(function() {
         let target = $(this).attr('data-animal')
         let key = '&api_key=ykFsBmZdBFsAC5DL9JfMNh01AZK5WaJM'
         let limit = '&limit=10'
-        let rating = '&rating=r'
-        let url = "https://api.giphy.com/v1/gifs/search?q=" + target + key + limit
+        let rating = '&rating=pg13'
+        let url = "https://api.giphy.com/v1/gifs/search?q=" + target + key + limit + rating
         $.get(url)
         .then(function(r){
             for (let i = 0; i < 10; i++) {
                 let movie = r.data[i].images.fixed_height.url
                 let still = r.data[i].images.fixed_height_still.url
+                console.log(r.data[i].rating)
+                let rating = $('<div>').text('Rating: ' + r.data[i].rating)
                 let img = $('<img>').attr('src',still)
+                let obj = $('<div>').addClass('gif-box')
                 img.attr('data-still',still).attr('data-movie',movie)
                 img.attr('data-state','still')
-                img.prependTo($('#images'))
+                obj.html(rating)
+                img.appendTo(obj)
+
+                obj.appendTo($('#images'))
             }
         })
     }
